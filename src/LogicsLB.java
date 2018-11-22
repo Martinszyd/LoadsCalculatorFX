@@ -1,19 +1,25 @@
 public class LogicsLB
 {
-    String LBweight;
-    String PeopleNo;
+   // String LBweight;
+    //String PeopleNo;
     double weightOfLB;
     double weightInLB = 0.0;
     double totalWeight = 0.0;
     double davitWeight = 0.0;
     double noOfPeople;
 
-    double weightInLbCalc() {
+    GraphicsController controller = new GraphicsController();
 
-        if (!LBweight.equals("") && !PeopleNo.equals("")) {
-            weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
-            noOfPeople = Double.parseDouble(PeopleNo.replaceAll("[^0-9.]", ""));
-            weightInLB = (weightOfLB * 0.1) + (noOfPeople * LBPanel.getPersonWeight() * 1.1);
+    double weightInLbCalc()
+    {
+        //LBweight = controller.getLBweight();
+        //PeopleNo = String.valueOf(controller.getLBpeople());
+
+        if (!controller.getLBweight().equals("") && !controller.getLBpeople().equals(""))
+        {
+            weightOfLB = Double.parseDouble(controller.getLBweight().replaceAll("[^0-9.]", ""));
+            noOfPeople = Double.parseDouble(controller.getLBpeople().replaceAll("[^0-9.]", ""));
+            weightInLB = (weightOfLB * 0.1) + (noOfPeople * GraphicsController.getLBpersonWeight() * 1.1);
             weightInLB *=10;
             weightInLB = Math.round(weightInLB);
             weightInLB /= 10;
@@ -24,9 +30,13 @@ public class LogicsLB
         return weightInLB;
     }
 
-    double totalWeightCalc() {
-        if (!LBweight.equals("") && !PeopleNo.equals("")) {
-            weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
+    double totalWeightCalc()
+    {
+        //LBweight = String.valueOf(controller.getLBweight());
+
+        if (!controller.getLBweight().equals("") && !controller.getLBpeople().equals(""))
+        {
+            weightOfLB = Double.parseDouble(controller.getLBweight().replaceAll("[^0-9.]", ""));
             totalWeight = weightOfLB + weightInLB;
         } else {
             totalWeight = 0;

@@ -1,29 +1,27 @@
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 public class CalculatorMain extends Application {
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(args);
     }
 
     @Override
-    public void start(Stage Stage) throws Exception
+    public void start(Stage stage) throws IOException
     {
-        Parent root = FXMLLoader.load(getClass().getResource("graphics.fxml"));
-        Stage.setTitle("Loads Calculator");
-        Stage.setScene(new Scene(root, 445, 912));
-        Stage.show();
-
-        graphics graphics = new graphics();
-
+        FXMLLoader loader = new FXMLLoader();
+        String fxmlDocPath = "C:\\Users\\marszy\\IdeaProjects\\LoadsCalculatorFX\\src\\graphics.fxml";
+        FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
+        AnchorPane root = loader.load(fxmlStream);
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Loads Calculator");
+        stage.show();
     }
-
-
-
 }
