@@ -29,43 +29,27 @@ public class GraphicsController
     @FXML private RadioButton RB825;
 
     @FXML private Label LBin;
-
-    String LBweightStr;
-    String LBweightAsq()
-    {
-        LBweightStr = String.valueOf(LBweight);
-        return LBweightStr;
-    }
+    @FXML private Label LRdavit;
 
     @FXML protected void weightsCalc(MouseEvent event)
     {
-        //LBweightStr = String.valueOf(LBweight);
-        //LBpeopleStr = String.valueOf(LBpeople);
-
-       // RBweightStr = String.valueOf(RBweight);
-       // RBpeopleStr = String.valueOf(RBpeople);
-
         LogicsLB logicsLB = new LogicsLB();
         LogicsRB logicsRB = new LogicsRB();
         LogicsLR logicsLR = new LogicsLR();
 
         logicsLB.weightInLbCalc();
-       // logicsLB.totalWeightCalc();
-       // logicsLB.davitWeightCalc();
+        LBin.setText(String.valueOf(logicsLB.weightInLB));
+        logicsLB.totalWeightCalc();
+        logicsLB.davitWeightCalc();
 
-        //logicsRB.weightInRbCalc();
-        //logicsRB.totalWeightCalc();
-        //logicsRB.davitWeightCalc();
+        logicsRB.weightInRbCalc();
+        logicsRB.totalWeightCalc();
+        logicsRB.davitWeightCalc();
 
-//        logicsLR.davitWeightCalc(String.valueOf(SWL));
-   //     this.SWL = SWL;
+        logicsLR.davitWeightCalc(String.valueOf(SWL.getText()));
+        LRdavit.setText(String.valueOf(logicsLR.davitWeight));
     }
 
-    @FXML void setOutput()
-    {
-        LogicsLB logicsLB = new LogicsLB();
-        LBin.setText(String.valueOf(logicsLB.weightInLbCalc()));
-    }
     @FXML protected void personWeight(MouseEvent e)
     {
         if (LB75.isSelected())
@@ -103,11 +87,6 @@ public class GraphicsController
         RBweight.setPromptText("Weight of the empty boat with equipment in kg");
         RBpeople.setPromptText("No. of People");
         SWL.setPromptText("Davit's SWL");
-    }
-
-    @FXML private void printOutput()
-    {
-
     }
 
     @FXML private void initialize(){ }

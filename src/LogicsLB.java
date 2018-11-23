@@ -12,11 +12,11 @@ public class LogicsLB
 
     double weightInLbCalc()
     {
-        LBweight = controller.LBweightAsq();
-        if (!String.valueOf(controller.LBweight).equals("") && !String.valueOf(controller.LBpeople).equals(""))
+        LBweight = String.valueOf(controller.LBweight.getText());
+        if (!LBweight.equals("") && !String.valueOf(controller.LBpeople.getText()).equals(""))
         {
             weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
-            noOfPeople = Double.parseDouble(String.valueOf(controller.LBpeople).replaceAll("[^0-9.]", ""));
+            noOfPeople = Double.parseDouble(String.valueOf(controller.LBpeople.getText()).replaceAll("[^0-9.]", ""));
             weightInLB = (weightOfLB * 0.1) + (noOfPeople * GraphicsController.getLBpersonWeight() * 1.1);
             weightInLB *=10;
             weightInLB = Math.round(weightInLB);
