@@ -1,6 +1,6 @@
 public class LogicsLB
 {
-   // String LBweight;
+    String LBweight;
     //String PeopleNo;
     double weightOfLB;
     double weightInLB = 0.0;
@@ -12,13 +12,11 @@ public class LogicsLB
 
     double weightInLbCalc()
     {
-        //LBweight = controller.getLBweight();
-        //PeopleNo = String.valueOf(controller.getLBpeople());
-
-        if (!controller.getLBweight().equals("") && !controller.getLBpeople().equals(""))
+        LBweight = controller.LBweightAsq();
+        if (!String.valueOf(controller.LBweight).equals("") && !String.valueOf(controller.LBpeople).equals(""))
         {
-            weightOfLB = Double.parseDouble(controller.getLBweight().replaceAll("[^0-9.]", ""));
-            noOfPeople = Double.parseDouble(controller.getLBpeople().replaceAll("[^0-9.]", ""));
+            weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
+            noOfPeople = Double.parseDouble(String.valueOf(controller.LBpeople).replaceAll("[^0-9.]", ""));
             weightInLB = (weightOfLB * 0.1) + (noOfPeople * GraphicsController.getLBpersonWeight() * 1.1);
             weightInLB *=10;
             weightInLB = Math.round(weightInLB);
@@ -34,9 +32,9 @@ public class LogicsLB
     {
         //LBweight = String.valueOf(controller.getLBweight());
 
-        if (!controller.getLBweight().equals("") && !controller.getLBpeople().equals(""))
+        if (!String.valueOf(controller.LBweight).equals("") && !String.valueOf(controller.LBpeople).equals(""))
         {
-            weightOfLB = Double.parseDouble(controller.getLBweight().replaceAll("[^0-9.]", ""));
+            weightOfLB = Double.parseDouble(String.valueOf(controller.LBweight).replaceAll("[^0-9.]", ""));
             totalWeight = weightOfLB + weightInLB;
         } else {
             totalWeight = 0;

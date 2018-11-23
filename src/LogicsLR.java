@@ -3,12 +3,9 @@ public class LogicsLR
     static double SWL;
     static double davitWeight = 0.0;
 
-    static double davitWeightCalc(String SWLStr){
-
-        //GraphicsController controller = new GraphicsController();
-
+    static double davitWeightCalc(String SWLStr)
+    {
         if (!SWLStr.equals("")) {
-            //SWLStr = String.valueOf(controller.getSWL());
             SWL = Double.parseDouble(SWLStr.replaceAll("[^0-9.]", ""));
             davitWeight = SWL * 1.1;
             davitWeight *= 10;

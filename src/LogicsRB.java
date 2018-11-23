@@ -1,7 +1,7 @@
 public class LogicsRB
 {
-    String RBweight;
-    String PeopleNo;
+    //String RBweight;
+   // String PeopleNo;
     double weightOfRB;
     double weightInRB = 0.0;
     double totalWeight = 0.0;
@@ -12,13 +12,13 @@ public class LogicsRB
 
     double weightInRbCalc()
     {
-        RBweight = String.valueOf(controller.getRBweight());
-        PeopleNo = String.valueOf(controller.getRBpeople());
+        //RBweight = String.valueOf(controller.RBweightStr);
+        //PeopleNo = String.valueOf(controller.getRBpeople());
 
-        if (!RBweight.equals("") && !PeopleNo.equals(""))
+        if (!String.valueOf(controller.RBweight).equals("") && !String.valueOf(controller.RBpeople).equals(""))
         {
-            weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
-            noOfPeople = Double.parseDouble(PeopleNo.replaceAll("[^0-9.]", ""));
+            weightOfRB = Double.parseDouble(String.valueOf(controller.RBweight).replaceAll("[^0-9.]", ""));
+            noOfPeople = Double.parseDouble(String.valueOf(controller.RBpeople).replaceAll("[^0-9.]", ""));
             weightInRB = (weightOfRB * 0.1) + (noOfPeople * GraphicsController.getRBpersonWeight() * 1.1);
             weightInRB *= 10;
             weightInRB = Math.round(weightInRB);
@@ -33,11 +33,11 @@ public class LogicsRB
 
     double totalWeightCalc()
     {
-        RBweight = String.valueOf(controller.getRBweight());
+        //RBweight = String.valueOf(controller.getRBweight());
 
-        if (!RBweight.equals("") && !PeopleNo.equals(""))
+        if (!String.valueOf(controller.RBweight).equals("") && !String.valueOf(controller.RBpeople).equals(""))
         {
-            weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
+            weightOfRB = Double.parseDouble(String.valueOf(controller.RBweight).replaceAll("[^0-9.]", ""));
             totalWeight = weightOfRB + weightInRB;
         }
         else
