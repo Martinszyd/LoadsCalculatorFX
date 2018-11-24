@@ -29,6 +29,13 @@ public class GraphicsController
     @FXML private RadioButton RB825;
 
     @FXML private Label LBin;
+    @FXML private Label LBtotal;
+    @FXML private Label LBdavit;
+
+    @FXML private Label RBin;
+    @FXML private Label RBtotal;
+    @FXML private Label RBdavit;
+
     @FXML private Label LRdavit;
 
     @FXML protected void weightsCalc(MouseEvent event)
@@ -37,14 +44,19 @@ public class GraphicsController
         LogicsRB logicsRB = new LogicsRB();
         LogicsLR logicsLR = new LogicsLR();
 
-        logicsLB.weightInLbCalc();
+        logicsLB.weightInLbCalc(String.valueOf(LBweight.getText()), String.valueOf(LBpeople.getText()), getLBpersonWeight());
         LBin.setText(String.valueOf(logicsLB.weightInLB));
-        logicsLB.totalWeightCalc();
+        logicsLB.totalWeightCalc(String.valueOf(LBweight.getText()), String.valueOf(LBpeople.getText()), getLBpersonWeight());
+        LBtotal.setText(String.valueOf(logicsLB.totalWeight));
         logicsLB.davitWeightCalc();
+        LBdavit.setText(String.valueOf(logicsLB.davitWeight));
 
-        logicsRB.weightInRbCalc();
-        logicsRB.totalWeightCalc();
+        logicsRB.weightInRbCalc(String.valueOf(RBweight.getText()), String.valueOf(RBpeople.getText()), getRBpersonWeight());
+        RBin.setText(String.valueOf(logicsRB.weightInRB));
+        logicsRB.totalWeightCalc(String.valueOf(RBweight.getText()), String.valueOf(RBpeople.getText()),getRBpersonWeight());
+        RBtotal.setText(String.valueOf(logicsRB.totalWeight));
         logicsRB.davitWeightCalc();
+        RBdavit.setText(String.valueOf(logicsRB.davitWeight));
 
         logicsLR.davitWeightCalc(String.valueOf(SWL.getText()));
         LRdavit.setText(String.valueOf(logicsLR.davitWeight));
@@ -56,18 +68,28 @@ public class GraphicsController
         {
             LBpersonWeight = 75;
         }
-        else
+
+        if (LB825.isSelected())
         {
             LBpersonWeight = 82.5;
+        }
+        else
+        {
+            LBpersonWeight = 0;
         }
 
         if (RB75.isSelected())
         {
             RBpersonWeight = 75;
         }
-        else
+
+        if (RB825.isSelected())
         {
             RBpersonWeight = 82.5;
+        }
+        else
+        {
+            RBpersonWeight = 0;
         }
     }
     static double getLBpersonWeight()
@@ -82,11 +104,17 @@ public class GraphicsController
 
     @FXML private void clearFields()
     {
-        LBweight.setPromptText("Weight of the empty boat with equipment in kg");
+        LBweight.setPromptText(String.valueOf("Weight of the empty boat with equipment in kg"));
         LBpeople.setPromptText("No. of People");
         RBweight.setPromptText("Weight of the empty boat with equipment in kg");
         RBpeople.setPromptText("No. of People");
         SWL.setPromptText("Davit's SWL");
+    }
+
+    @FXML private void printOutput()
+    {
+        PrintingOutput printing = new PrintingOutput();
+        printing.printOutput();
     }
 
     @FXML private void initialize(){ }
