@@ -66,30 +66,20 @@ public class GraphicsController
     {
         if (LB75.isSelected())
         {
-            LBpersonWeight = 75;
+            LBpersonWeight = 75.0;
         }
-
         if (LB825.isSelected())
         {
             LBpersonWeight = 82.5;
-        }
-        else
-        {
-            LBpersonWeight = 0;
         }
 
         if (RB75.isSelected())
         {
             RBpersonWeight = 75;
         }
-
         if (RB825.isSelected())
         {
             RBpersonWeight = 82.5;
-        }
-        else
-        {
-            RBpersonWeight = 0;
         }
     }
     static double getLBpersonWeight()

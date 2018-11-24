@@ -9,7 +9,6 @@ public class LogicsLB
 
     double weightInLbCalc(String LBweight, String PeopleNo, double personWeight)
     {
-        personWeight = GraphicsController.getRBpersonWeight();
         if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
         {
             weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
