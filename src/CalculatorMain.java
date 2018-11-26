@@ -16,9 +16,8 @@ public class CalculatorMain extends Application {
     public void start(Stage stage) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        String fxmlDocPath = "C:\\Users\\marszy\\IdeaProjects\\LoadsCalculatorFX\\src\\graphics.fxml";
-        FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
-        AnchorPane root = loader.load(fxmlStream);
+        loader.setLocation(getClass().getResource("/graphics.fxml"));
+        AnchorPane root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Loads Calculator");

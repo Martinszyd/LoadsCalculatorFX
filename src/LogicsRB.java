@@ -1,17 +1,16 @@
-public class LogicsRB
+class LogicsRB
 {
-    double weightOfRB;
+    private double weightOfRB;
     double weightInRB;
     double totalWeight;
     double davitWeight;
-    double noOfPeople;
-    double personWeight;
 
 
     double weightInRbCalc(String RBweight, String PeopleNo,double personWeight)
     {
         if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
         {
+            double noOfPeople;
             weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
             noOfPeople = Double.parseDouble(PeopleNo.replaceAll("[^0-9.]", ""));
             weightInRB = (weightOfRB * 0.1) + (noOfPeople * personWeight * 1.1);

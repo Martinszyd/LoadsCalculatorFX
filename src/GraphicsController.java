@@ -3,6 +3,8 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.web.PromptData;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,38 +43,37 @@ public class GraphicsController
     @FXML private Label LBwarningLabel;
     @FXML private Label RBwarningLabel;
 
-    @FXML protected void weightsCalc(MouseEvent event)
+    @FXML private void weightsCalc(MouseEvent event)
     {
-        if (!LB75.isSelected() && !LB825.isSelected())
-        {
-            LBpersonWeight = 0;
-            LBwarningLabel.setText(String.valueOf("Choose persnon's weight!"));
-        }
-        else
-        {
-            LBwarningLabel.setText(String.valueOf(""));
-        }
-
-        if (!RB75.isSelected() && !RB825.isSelected())
-        {
-            RBpersonWeight = 0;
-            RBwarningLabel.setText(String.valueOf("Choose persnon's weight!"));
-        }
-        else
-        {
-            RBwarningLabel.setText(String.valueOf(""));
-        }
-
         LogicsLB logicsLB = new LogicsLB();
         LogicsRB logicsRB = new LogicsRB();
-        LogicsLR logicsLR = new LogicsLR();
 
-        logicsLB.weightInLbCalc(String.valueOf(LBweight.getText()), String.valueOf(LBpeople.getText()), getLBpersonWeight());
-        LBin.setText(String.valueOf(logicsLB.weightInLB));
-        logicsLB.totalWeightCalc(String.valueOf(LBweight.getText()), String.valueOf(LBpeople.getText()), getLBpersonWeight());
-        LBtotal.setText(String.valueOf(logicsLB.totalWeight));
-        logicsLB.davitWeightCalc();
-        LBdavit.setText(String.valueOf(logicsLB.davitWeight));
+
+        if (String.valueOf(LBweight)!="" && String.valueOf(LBpeople)!="")
+        {
+            if (!LB75.isSelected() && !LB825.isSelected()) {
+                LBpersonWeight = 0;
+                LBwarningLabel.setText(String.valueOf("Choose person's weight!"));
+            } else {
+                LBwarningLabel.setText(String.valueOf(""));
+            }
+
+            logicsLB.weightInLbCalc(String.valueOf(LBweight.getText()), String.valueOf(LBpeople.getText()), getLBpersonWeight());
+            LBin.setText(String.valueOf(logicsLB.weightInLB));
+            logicsLB.totalWeightCalc(String.valueOf(LBweight.getText()), String.valueOf(LBpeople.getText()), getLBpersonWeight());
+            LBtotal.setText(String.valueOf(logicsLB.totalWeight));
+            logicsLB.davitWeightCalc();
+            LBdavit.setText(String.valueOf(logicsLB.davitWeight));
+        }
+            if (!RB75.isSelected() && !RB825.isSelected())
+            {
+                RBpersonWeight = 0;
+                RBwarningLabel.setText(String.valueOf("Choose person's weight!"));
+            }
+            else
+            {
+                RBwarningLabel.setText(String.valueOf(""));
+            }
 
         logicsRB.weightInRbCalc(String.valueOf(RBweight.getText()), String.valueOf(RBpeople.getText()), getRBpersonWeight());
         RBin.setText(String.valueOf(logicsRB.weightInRB));
@@ -81,6 +82,7 @@ public class GraphicsController
         logicsRB.davitWeightCalc();
         RBdavit.setText(String.valueOf(logicsRB.davitWeight));
 
+        LogicsLR logicsLR = new LogicsLR();
         logicsLR.davitWeightCalc(String.valueOf(SWL.getText()));
         LRdavit.setText(String.valueOf(logicsLR.davitWeight));
     }
@@ -117,11 +119,11 @@ public class GraphicsController
 
     @FXML private void clearFields()
     {
-        LBweight.setPromptText(String.valueOf("Weight of the empty boat with equipment in kg"));
-        LBpeople.setPromptText("No. of People");
-        RBweight.setPromptText("Weight of the empty boat with equipment in kg");
-        RBpeople.setPromptText("No. of People");
-        SWL.setPromptText("Davit's SWL");
+        LBweight.setText(String.valueOf("Weight of the empty boat with equipment in kg"));
+        LBpeople.setText(String.valueOf("No. of People"));
+        RBweight.setText(String.valueOf("Weight of the empty boat with equipment in kg"));
+        RBpeople.setText(String.valueOf("No. of People"));
+        SWL.setText(String.valueOf("Davit's SWL"));
     }
 
     @FXML private void printOutput()
