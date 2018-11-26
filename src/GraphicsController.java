@@ -38,8 +38,31 @@ public class GraphicsController
 
     @FXML private Label LRdavit;
 
+    @FXML private Label LBwarningLabel;
+    @FXML private Label RBwarningLabel;
+
     @FXML protected void weightsCalc(MouseEvent event)
     {
+        if (!LB75.isSelected() && !LB825.isSelected())
+        {
+            LBpersonWeight = 0;
+            LBwarningLabel.setText(String.valueOf("Choose persnon's weight!"));
+        }
+        else
+        {
+            LBwarningLabel.setText(String.valueOf(""));
+        }
+
+        if (!RB75.isSelected() && !RB825.isSelected())
+        {
+            RBpersonWeight = 0;
+            RBwarningLabel.setText(String.valueOf("Choose persnon's weight!"));
+        }
+        else
+        {
+            RBwarningLabel.setText(String.valueOf(""));
+        }
+
         LogicsLB logicsLB = new LogicsLB();
         LogicsRB logicsRB = new LogicsRB();
         LogicsLR logicsLR = new LogicsLR();
@@ -103,8 +126,7 @@ public class GraphicsController
 
     @FXML private void printOutput()
     {
-        PrintingOutput printing = new PrintingOutput();
-        printing.printOutput();
+
     }
 
     @FXML private void initialize(){ }

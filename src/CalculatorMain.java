@@ -16,7 +16,7 @@ public class CalculatorMain extends Application {
     public void start(Stage stage) throws IOException
     {
         FXMLLoader loader = new FXMLLoader();
-        String fxmlDocPath = "C:\\Users\\Martin\\IdeaProjects\\LoadsCalculatorFX\\src\\graphics.fxml";
+        String fxmlDocPath = "C:\\Users\\marszy\\IdeaProjects\\LoadsCalculatorFX\\src\\graphics.fxml";
         FileInputStream fxmlStream = new FileInputStream(fxmlDocPath);
         AnchorPane root = loader.load(fxmlStream);
         Scene scene = new Scene(root);
