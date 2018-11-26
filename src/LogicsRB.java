@@ -1,25 +1,20 @@
 public class LogicsRB
 {
-    //String RBweight;
-   // String PeopleNo;
     double weightOfRB;
-    double weightInRB = 0.0;
-    double totalWeight = 0.0;
-    double davitWeight = 0.0;
+    double weightInRB;
+    double totalWeight;
+    double davitWeight;
     double noOfPeople;
+    double personWeight;
 
-    GraphicsController controller = new GraphicsController();
 
-    double weightInRbCalc()
+    double weightInRbCalc(String RBweight, String PeopleNo,double personWeight)
     {
-        //RBweight = String.valueOf(controller.RBweightStr);
-        //PeopleNo = String.valueOf(controller.getRBpeople());
-
-        if (!String.valueOf(controller.RBweight).equals("") && !String.valueOf(controller.RBpeople).equals(""))
+        if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
         {
-            weightOfRB = Double.parseDouble(String.valueOf(controller.RBweight).replaceAll("[^0-9.]", ""));
-            noOfPeople = Double.parseDouble(String.valueOf(controller.RBpeople).replaceAll("[^0-9.]", ""));
-            weightInRB = (weightOfRB * 0.1) + (noOfPeople * GraphicsController.getRBpersonWeight() * 1.1);
+            weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
+            noOfPeople = Double.parseDouble(PeopleNo.replaceAll("[^0-9.]", ""));
+            weightInRB = (weightOfRB * 0.1) + (noOfPeople * personWeight * 1.1);
             weightInRB *= 10;
             weightInRB = Math.round(weightInRB);
             weightInRB /= 10;
@@ -31,13 +26,11 @@ public class LogicsRB
         return weightInRB;
     }
 
-    double totalWeightCalc()
+    double totalWeightCalc(String RBweight, String PeopleNo, double personWeight)
     {
-        //RBweight = String.valueOf(controller.getRBweight());
-
-        if (!String.valueOf(controller.RBweight).equals("") && !String.valueOf(controller.RBpeople).equals(""))
+        if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
         {
-            weightOfRB = Double.parseDouble(String.valueOf(controller.RBweight).replaceAll("[^0-9.]", ""));
+            weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
             totalWeight = weightOfRB + weightInRB;
         }
         else

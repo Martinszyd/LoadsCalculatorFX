@@ -1,42 +1,39 @@
 public class LogicsLB
 {
-    String LBweight;
-    //String PeopleNo;
     double weightOfLB;
-    double weightInLB = 0.0;
-    double totalWeight = 0.0;
-    double davitWeight = 0.0;
+    double weightInLB;
+    double totalWeight;
+    double davitWeight;
     double noOfPeople;
 
-    GraphicsController controller = new GraphicsController();
 
-    double weightInLbCalc()
+    double weightInLbCalc(String LBweight, String PeopleNo, double personWeight)
     {
-        LBweight = controller.LBweightAsq();
-        if (!String.valueOf(controller.LBweight).equals("") && !String.valueOf(controller.LBpeople).equals(""))
+        if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
         {
             weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
-            noOfPeople = Double.parseDouble(String.valueOf(controller.LBpeople).replaceAll("[^0-9.]", ""));
-            weightInLB = (weightOfLB * 0.1) + (noOfPeople * GraphicsController.getLBpersonWeight() * 1.1);
+            noOfPeople = Double.parseDouble(PeopleNo.replaceAll("[^0-9.]", ""));
+            weightInLB = (weightOfLB * 0.1) + (noOfPeople * personWeight * 1.1);
             weightInLB *=10;
             weightInLB = Math.round(weightInLB);
             weightInLB /= 10;
         }
-        else {
+        else
+        {
             weightInLB = 0;
         }
         return weightInLB;
     }
 
-    double totalWeightCalc()
+    double totalWeightCalc(String LBweight, String PeopleNo, double personWeight)
     {
-        //LBweight = String.valueOf(controller.getLBweight());
-
-        if (!String.valueOf(controller.LBweight).equals("") && !String.valueOf(controller.LBpeople).equals(""))
+        if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
         {
-            weightOfLB = Double.parseDouble(String.valueOf(controller.LBweight).replaceAll("[^0-9.]", ""));
+            weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
             totalWeight = weightOfLB + weightInLB;
-        } else {
+        }
+        else
+        {
             totalWeight = 0;
         }
         return totalWeight;
