@@ -6,9 +6,9 @@ class LogicsRB
     double davitWeight;
 
 
-    double weightInRbCalc(String RBweight, String PeopleNo,double personWeight)
+    void weightInRbCalc(String RBweight, String PeopleNo,double personWeight)
     {
-        if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
+        if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals(""))
         {
             double noOfPeople;
             weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
@@ -18,30 +18,19 @@ class LogicsRB
             weightInRB = Math.round(weightInRB);
             weightInRB /= 10;
         }
-        else
-        {
-            weightInRB = 0;
-        }
-        return weightInRB;
     }
 
-    double totalWeightCalc(String RBweight, String PeopleNo, double personWeight)
+    void totalWeightCalc(String RBweight, String PeopleNo)
     {
-        if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
+        if (!RBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals(""))
         {
             weightOfRB = Double.parseDouble(RBweight.replaceAll("[^0-9.]", ""));
             totalWeight = weightOfRB + weightInRB;
         }
-        else
-        {
-            totalWeight = 0;
-        }
-        return totalWeight;
     }
 
-    double davitWeightCalc()
+    void davitWeightCalc()
     {
         davitWeight = totalWeight;
-        return davitWeight;
     }
 }

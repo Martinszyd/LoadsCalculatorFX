@@ -1,16 +1,16 @@
-public class LogicsLB
+class LogicsLB
 {
-    double weightOfLB;
+    private double weightOfLB;
     double weightInLB;
     double totalWeight;
     double davitWeight;
-    double noOfPeople;
 
 
-    double weightInLbCalc(String LBweight, String PeopleNo, double personWeight)
+    void weightInLbCalc(String LBweight, String PeopleNo, double personWeight)
     {
-        if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
+        if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals(""))
         {
+            double noOfPeople;
             weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
             noOfPeople = Double.parseDouble(PeopleNo.replaceAll("[^0-9.]", ""));
             weightInLB = (weightOfLB * 0.1) + (noOfPeople * personWeight * 1.1);
@@ -18,31 +18,19 @@ public class LogicsLB
             weightInLB = Math.round(weightInLB);
             weightInLB /= 10;
         }
-        else
-        {
-            weightInLB = 0;
-        }
-        return weightInLB;
     }
 
-    double totalWeightCalc(String LBweight, String PeopleNo, double personWeight)
+    void totalWeightCalc(String LBweight, String PeopleNo)
     {
-        if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals("") && personWeight!=0)
+        if (!LBweight.replaceAll("[^0-9.]", "").equals("") && !PeopleNo.replaceAll("[^0-9.]", "").equals(""))
         {
             weightOfLB = Double.parseDouble(LBweight.replaceAll("[^0-9.]", ""));
             totalWeight = weightOfLB + weightInLB;
         }
-        else
-        {
-            totalWeight = 0;
-        }
-        return totalWeight;
     }
 
-    double davitWeightCalc()
+    void davitWeightCalc()
     {
         davitWeight = totalWeight;
-
-        return davitWeight;
     }
 }

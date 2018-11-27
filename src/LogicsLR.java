@@ -1,20 +1,16 @@
-public class LogicsLR
+class LogicsLR
 {
-    static double SWL;
-    static double davitWeight = 0.0;
+    static double davitWeight;
 
-    static double davitWeightCalc(String SWLStr)
+    static void davitWeightCalc(String SWLStr)
     {
         if (!SWLStr.equals("")) {
+            double SWL;
             SWL = Double.parseDouble(SWLStr.replaceAll("[^0-9.]", ""));
             davitWeight = SWL * 1.1;
             davitWeight *= 10;
             davitWeight = Math.round(davitWeight);
             davitWeight /= 10;
         }
-        else {
-            davitWeight = 0;
-        }
-        return davitWeight;
     }
 }
