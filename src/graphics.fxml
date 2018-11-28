@@ -75,7 +75,7 @@
             </Label>
             <Button layoutX="254.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#weightsCalc" prefHeight="25.0" prefWidth="70.0" text="Calculate" textAlignment="CENTER" />
             <Button layoutX="420.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#clearFields" prefHeight="25.0" prefWidth="70.0" text="Reset" textAlignment="CENTER" textFill="#f50303" />
-            <Button layoutX="597.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#printOutput" prefHeight="25.0" prefWidth="70.0" text="Print" textFill="#001eff" />
+            <Button layoutX="597.0" layoutY="351.0" mnemonicParsing="false" onMouseClicked="#printOutput" prefHeight="25.0" prefWidth="70.0" text="Print" textAlignment="CENTER" textFill="#001eff" />
             <Separator layoutY="332.0" prefHeight="4.0" prefWidth="912.0" />
             <RadioButton fx:id="LB75" layoutX="197.0" layoutY="126.0" mnemonicParsing="false" onMouseClicked="#personWeight" text="75 kg / person" toggleGroup="$g1">
                <font>

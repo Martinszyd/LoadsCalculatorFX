@@ -1,8 +1,11 @@
+import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
+import javafx.print.*;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.Pane;
 
 
 public class GraphicsController
@@ -36,7 +39,7 @@ public class GraphicsController
     @FXML private Label LBwarningLabel;
     @FXML private Label RBwarningLabel;
 
-    @FXML private void weightsCalc(MouseEvent event)
+    @FXML private void weightsCalc()
     {
         if (!LBweight.getText().equals("") && !LBpeople.getText().equals(""))
         {
@@ -81,7 +84,7 @@ public class GraphicsController
         }
     }
 
-    @FXML protected void personWeight(MouseEvent e)
+    @FXML protected void personWeight()
     {
         if (LB75.isSelected())
         {
@@ -122,6 +125,27 @@ public class GraphicsController
 
     @FXML private void printOutput()
     {
+        Printer myPrinter;
+        ObservableSet<Printer> printers = Printer.getAllPrinters();
+        for(Printer printer : printers)
+        {
+            if(printer.getName().matches("PDF Complete")){
+                myPrinter = printer;
+            }
+        }
+        PrinterJob printerJob = PrinterJob.createPrinterJob(myPrinter);
+        Printer myPrinter = printerJob.setPrinter(Printer myPrinter);
+
+        JobSettings jobSettings = printerJob.getJobSettings();
+        PageLayout pageLayout;
+        //pageLayout = jobSettings.getPageLayout();
+        pageLayout = myPrinter.createPageLayout(Paper.A4,
+                PageOrientation.PORTRAIT,Printer.MarginType.EQUAL);
+        jobSettings.setPageLayout(pageLayout);
+
+        Pane receiptPane = new Pane();
+        receiptPane.getChildren().addAll(LBweight, RBweight, LBpeople, RBpeople, LB75, LB825, RB75, RB825, SWL, LBin, LBtotal, LBdavit, RBin, RBtotal, RBdavit);
+        printerJob.printPage(pageLayout, receiptPane);
 
     }
 
