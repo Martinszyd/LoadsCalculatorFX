@@ -5,6 +5,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 
@@ -15,6 +16,7 @@ public class GraphicsController
     private static double LBpersonWeight;
     private static double RBpersonWeight;
 
+    @FXML AnchorPane printScene;
     @FXML TextField LBweight;
     @FXML TextField LBpeople;
     @FXML TextField RBweight;
@@ -125,28 +127,31 @@ public class GraphicsController
 
     @FXML private void printOutput()
     {
-        Printer myPrinter;
-        ObservableSet<Printer> printers = Printer.getAllPrinters();
-        for(Printer printer : printers)
+        Printer printer = Printer.getDefaultPrinter(); //get the default printer
+        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT); //create a pagelayout.  I used Paper.NA_LETTER for a standard 8.5 x 11 in page.
+        PrinterJob job = PrinterJob.createPrinterJob();//create a printer job
+
+        if(job.showPrintDialog(printScene.getScene().getWindow()))// this is very useful it allows you to save the file as a pdf instead using all of your printer's paper. A dialog box pops up, allowing you to change the "name" option from your default printer to Adobe pdf.
         {
-            if(printer.getName().matches("PDF Complete")){
-                myPrinter = printer;
+            double pagePrintableWidth = pageLayout.getPrintableWidth();
+            double pagePrintableHeight = pageLayout.getPrintableHeight();
+
+            double scaleX = pagePrintableWidth / printScene.getBoundsInParent().getWidth();//scaling down so that the printing width fits within the paper's width bound.
+            double scaleY = scaleX; //scaling the height using the same scale as the width. This allows the writing and the images to maintain their scale, or not look skewed.
+            double localScale = scaleX; //not really needed since everything is scaled down at the same ratio. scaleX is used thoughout the program to scale the print out.
+        printScene.setScaleX(scaleX);
+        printScene.setScaleY(scaleY);
+
+            if (job != null)
+            {
+                boolean success = job.printPage(pageLayout, printScene);
+                if (success)
+                {
+                    System.out.println("PRINTING SUCCESSFUL");
+                    job.endJob();
+                }
             }
         }
-        PrinterJob printerJob = PrinterJob.createPrinterJob(myPrinter);
-        Printer myPrinter = printerJob.setPrinter(Printer myPrinter);
-
-        JobSettings jobSettings = printerJob.getJobSettings();
-        PageLayout pageLayout;
-        //pageLayout = jobSettings.getPageLayout();
-        pageLayout = myPrinter.createPageLayout(Paper.A4,
-                PageOrientation.PORTRAIT,Printer.MarginType.EQUAL);
-        jobSettings.setPageLayout(pageLayout);
-
-        Pane receiptPane = new Pane();
-        receiptPane.getChildren().addAll(LBweight, RBweight, LBpeople, RBpeople, LB75, LB825, RB75, RB825, SWL, LBin, LBtotal, LBdavit, RBin, RBtotal, RBdavit);
-        printerJob.printPage(pageLayout, receiptPane);
-
     }
 
     @FXML private void initialize(){ }
