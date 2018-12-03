@@ -1,12 +1,9 @@
-import javafx.collections.ObservableSet;
 import javafx.fxml.FXML;
 import javafx.print.*;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 
 
 public class GraphicsController
@@ -127,31 +124,25 @@ public class GraphicsController
 
     @FXML private void printOutput()
     {
-        Printer printer = Printer.getDefaultPrinter(); //get the default printer
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT); //create a pagelayout.  I used Paper.NA_LETTER for a standard 8.5 x 11 in page.
-        PrinterJob job = PrinterJob.createPrinterJob();//create a printer job
+        Printer printer = Printer.getDefaultPrinter();
+        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.EQUAL);
+        PrinterJob job = PrinterJob.createPrinterJob();
 
-        if(job.showPrintDialog(printScene.getScene().getWindow()))// this is very useful it allows you to save the file as a pdf instead using all of your printer's paper. A dialog box pops up, allowing you to change the "name" option from your default printer to Adobe pdf.
-        {
+        job.showPrintDialog(printScene.getScene().getWindow());// this is very useful it allows you to save the file as a pdf instead using all of your printer's paper. A dialog box pops up, allowing you to change the "name" option from your default printer to Adobe pdf.
+
             double pagePrintableWidth = pageLayout.getPrintableWidth();
-            double pagePrintableHeight = pageLayout.getPrintableHeight();
 
-            double scaleX = pagePrintableWidth / printScene.getBoundsInParent().getWidth();//scaling down so that the printing width fits within the paper's width bound.
-            double scaleY = scaleX; //scaling the height using the same scale as the width. This allows the writing and the images to maintain their scale, or not look skewed.
-            double localScale = scaleX; //not really needed since everything is scaled down at the same ratio. scaleX is used thoughout the program to scale the print out.
-        printScene.setScaleX(scaleX);
-        printScene.setScaleY(scaleY);
 
-            if (job != null)
-            {
+            double scaleX = pagePrintableWidth;
+            printScene.scaleXProperty().set(scaleX); // TO DO POPRAWKI
+
                 boolean success = job.printPage(pageLayout, printScene);
                 if (success)
                 {
                     System.out.println("PRINTING SUCCESSFUL");
                     job.endJob();
                 }
-            }
-        }
+
     }
 
     @FXML private void initialize(){ }
