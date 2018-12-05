@@ -1,11 +1,8 @@
 import javafx.fxml.FXML;
-import javafx.print.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Region;
-import javafx.scene.transform.Scale;
 
 
 public class GraphicsController
@@ -126,10 +123,10 @@ public class GraphicsController
 
     @FXML private void printOutput()
     {
-    PrinterClass printer = new PrinterClass();
+
     try
         {
-        printer.printNode(printScene);
+        PrinterClass.printNode(printScene);
         }
         catch (NoSuchMethodException nsme)
             {

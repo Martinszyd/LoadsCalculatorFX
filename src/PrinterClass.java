@@ -2,13 +2,12 @@ import javafx.print.*;
 import javafx.scene.layout.Region;
 import javafx.scene.transform.Scale;
 
-public class PrinterClass
+class PrinterClass
     {
-    public static void printNode(final Region region) throws NoSuchMethodException
+     static void printNode(final Region region) throws NoSuchMethodException
         {
         Printer printer = Printer.getDefaultPrinter();
         PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, 50, 50, 150, 30);
-        PrinterAttributes attr = printer.getPrinterAttributes();
         PrinterJob job = PrinterJob.createPrinterJob();
         job.getJobSettings().setPageLayout(pageLayout);
 
