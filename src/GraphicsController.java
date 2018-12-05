@@ -4,6 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
+import javafx.scene.transform.Scale;
 
 
 public class GraphicsController
@@ -124,25 +126,15 @@ public class GraphicsController
 
     @FXML private void printOutput()
     {
-        Printer printer = Printer.getDefaultPrinter();
-        PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.EQUAL);
-        PrinterJob job = PrinterJob.createPrinterJob();
-
-        job.showPrintDialog(printScene.getScene().getWindow());// this is very useful it allows you to save the file as a pdf instead using all of your printer's paper. A dialog box pops up, allowing you to change the "name" option from your default printer to Adobe pdf.
-
-            double pagePrintableWidth = pageLayout.getPrintableWidth();
-
-
-            double scaleX = pagePrintableWidth;
-            printScene.scaleXProperty().set(scaleX); // TO DO POPRAWKI
-
-                boolean success = job.printPage(pageLayout, printScene);
-                if (success)
-                {
-                    System.out.println("PRINTING SUCCESSFUL");
-                    job.endJob();
-                }
-
+    PrinterClass printer = new PrinterClass();
+    try
+        {
+        printer.printNode(printScene);
+        }
+        catch (NoSuchMethodException nsme)
+            {
+            nsme.getMessage();
+            }
     }
 
     @FXML private void initialize(){ }
